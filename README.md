@@ -1,4 +1,4 @@
-# Chotu â€” AI Business Operations Agent
+# Chotu - AI Business Operations Agent
 
 > **WhatsApp-connected AI agent** that autonomously handles B2B sourcing operations, presentation generation, email campaigns, and team coordination for SourceWithAI.
 
@@ -9,55 +9,55 @@ Built on the [OpenClaw](https://github.com/nichochar/openclaw) gateway framework
 ## Architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    WhatsApp Business                         â”‚
-â”‚              Team Group Chat (4 members)                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                       â”‚ Messages
-                       â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚              OpenClaw Gateway (systemd)                      â”‚
-â”‚                   Port 18789                                 â”‚
-â”‚                                                             â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚
-â”‚  â”‚  SOUL.md    â”‚  â”‚  MEMORY.md   â”‚  â”‚  Session Logs     â”‚  â”‚
-â”‚  â”‚  Identity   â”‚  â”‚  Long-term   â”‚  â”‚  (JSONL)          â”‚  â”‚
-â”‚  â”‚  & Rules    â”‚  â”‚  Memory      â”‚  â”‚                   â”‚  â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚
-â”‚                                                             â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”‚
-â”‚  â”‚              Tool Scripts                            â”‚    â”‚
-â”‚  â”‚                                                     â”‚    â”‚
-â”‚  â”‚  otapi-helper.js (2700+ lines)                      â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ OTAPI product search (Alibaba/1688/Taobao)     â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ SWAI platform search integration               â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ Image-based product search                     â”‚    â”‚
-â”‚  â”‚  â””â”€â”€ Chinese keyword translation (1281 keywords)    â”‚    â”‚
-â”‚  â”‚                                                     â”‚    â”‚
-â”‚  â”‚  sage-helper.js (929 lines)                         â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ US promotional product search                  â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ Inventory status checking                      â”‚    â”‚
-â”‚  â”‚  â””â”€â”€ Product enrichment pipeline                    â”‚    â”‚
-â”‚  â”‚                                                     â”‚    â”‚
-â”‚  â”‚  smartlead-helper.js                                â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ Email campaign management                      â”‚    â”‚
-â”‚  â”‚  â”œâ”€â”€ Lead list operations                           â”‚    â”‚
-â”‚  â”‚  â””â”€â”€ Campaign analytics                             â”‚    â”‚
-â”‚  â”‚                                                     â”‚    â”‚
-â”‚  â”‚  short-term-memory.js                               â”‚    â”‚
-â”‚  â”‚  â””â”€â”€ Auto-generates memory files every 2 hours      â”‚    â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚
-â”‚                                                             â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”‚
-â”‚  â”‚          External API Integrations                   â”‚    â”‚
-â”‚  â”‚                                                     â”‚    â”‚
-â”‚  â”‚  Gamma API â”€â”€â”€â”€ Presentation generation             â”‚    â”‚
-â”‚  â”‚  OTAPI â”€â”€â”€â”€â”€â”€â”€â”€ B2B product sourcing (China)        â”‚    â”‚
-â”‚  â”‚  SAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€ US promo product sourcing           â”‚    â”‚
-â”‚  â”‚  SWAI API â”€â”€â”€â”€â”€ Platform search integration         â”‚    â”‚
-â”‚  â”‚  SmartLead â”€â”€â”€â”€ Email campaign automation           â”‚    â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
++-------------------------------------------------------------+
+|                    WhatsApp Business                         |
+|              Team Group Chat (4 members)                     |
++----------------------+--------------------------------------+
+                       | Messages
+                       v
++-------------------------------------------------------------+
+|              OpenClaw Gateway (systemd)                      |
+|                   Port 18789                                 |
+|                                                             |
+|  +-------------+  +--------------+  +-------------------+  |
+|  |  SOUL.md    |  |  MEMORY.md   |  |  Session Logs     |  |
+|  |  Identity   |  |  Long-term   |  |  (JSONL)          |  |
+|  |  & Rules    |  |  Memory      |  |                   |  |
+|  +-------------+  +--------------+  +-------------------+  |
+|                                                             |
+|  +-----------------------------------------------------+   |
+|  |              Tool Scripts                            |   |
+|  |                                                     |   |
+|  |  otapi-helper.js (2700+ lines)                      |   |
+|  |  |-- OTAPI product search (Alibaba/1688/Taobao)     |   |
+|  |  |-- SWAI platform search integration               |   |
+|  |  |-- Image-based product search                     |   |
+|  |  +-- Chinese keyword translation (1281 keywords)    |   |
+|  |                                                     |   |
+|  |  sage-helper.js (929 lines)                         |   |
+|  |  |-- US promotional product search                  |   |
+|  |  |-- Inventory status checking                      |   |
+|  |  +-- Product enrichment pipeline                    |   |
+|  |                                                     |   |
+|  |  smartlead-helper.js                                |   |
+|  |  |-- Email campaign management                      |   |
+|  |  |-- Lead list operations                           |   |
+|  |  +-- Campaign analytics                             |   |
+|  |                                                     |   |
+|  |  short-term-memory.js                               |   |
+|  |  +-- Auto-generates memory files every 2 hours      |   |
+|  +-----------------------------------------------------+   |
+|                                                             |
+|  +-----------------------------------------------------+   |
+|  |          External API Integrations                   |   |
+|  |                                                     |   |
+|  |  Gamma API ---- Presentation generation             |   |
+|  |  OTAPI -------- B2B product sourcing (China)        |   |
+|  |  SAGE --------- US promo product sourcing           |   |
+|  |  SWAI API ----- Platform search integration         |   |
+|  |  SmartLead ---- Email campaign automation           |   |
+|  +-----------------------------------------------------+   |
++-------------------------------------------------------------+
 ```
 
 ---
@@ -87,11 +87,11 @@ Integrates with SmartLead for outbound email campaigns:
 
 ### Memory & Context
 Chotu maintains persistent awareness across conversations:
-- **SOUL.md** â€” Core identity, rules, team preferences, API specifications
-- **MEMORY.md** â€” Long-term persistent facts (client history, past decisions)
-- **Daily memory files** â€” Auto-generated summaries of each day's operations
-- **Short-term memory** â€” Auto-captures WhatsApp group messages every 2 hours
-- **Session logs** â€” Full JSONL audit trail of every interaction
+- **SOUL.md** - Core identity, rules, team preferences, API specifications
+- **MEMORY.md** - Long-term persistent facts (client history, past decisions)
+- **Daily memory files** - Auto-generated summaries of each day's operations
+- **Short-term memory** - Auto-captures WhatsApp group messages every 2 hours
+- **Session logs** - Full JSONL audit trail of every interaction
 
 ### Team Coordination
 - Knows each team member's role and communication preferences
@@ -120,21 +120,21 @@ Chotu maintains persistent awareness across conversations:
 ## Key Design Decisions
 
 ### Personality-Driven Agent
-Chotu has a defined identity (SOUL.md) with personality traits, communication style, and operational boundaries. This isn't a generic chatbot â€” it's a team member with preferences and guardrails.
+Chotu has a defined identity (SOUL.md) with personality traits, communication style, and operational boundaries. This isn't a generic chatbot - it's a team member with preferences and guardrails.
 
 ### Memory Architecture (3-Tier)
 ```
-Long-term (MEMORY.md)     â†’ Permanent facts, client history, standing rules
-Daily (memory/YYYY-MM-DD) â†’ Day-specific context, decisions made, tasks completed
-Short-term (auto-generated)â†’ Rolling 48h window of group chat activity
+Long-term (MEMORY.md)      --> Permanent facts, client history, standing rules
+Daily (memory/YYYY-MM-DD)  --> Day-specific context, decisions made, tasks completed
+Short-term (auto-generated) --> Rolling 48h window of group chat activity
 ```
 
 ### Tool Routing
 Chotu decides which tool to invoke based on message intent:
-- Product requests â†’ `otapi-helper.js` or `sage-helper.js`
-- Presentation requests â†’ Gamma API
-- Campaign management â†’ `smartlead-helper.js`
-- General questions â†’ Direct LLM response
+- Product requests --> `otapi-helper.js` or `sage-helper.js`
+- Presentation requests --> Gamma API
+- Campaign management --> `smartlead-helper.js`
+- General questions --> Direct LLM response
 
 ### Guardrails
 - Never exposes API keys, credentials, or internal architecture in chat
@@ -159,7 +159,7 @@ Chotu decides which tool to invoke based on message intent:
 
 ## My Role
 
-**Architect & Developer** â€” Designed and built the entire agent system:
+**Architect & Developer** - Designed and built the entire agent system:
 
 - Designed the SOUL/MEMORY/TOOLS architecture for persistent AI agent behavior
 - Built 4000+ lines of Node.js helper scripts for product sourcing across 3 platforms
@@ -173,7 +173,7 @@ Chotu decides which tool to invoke based on message intent:
 
 ## Status
 
-**Production** â€” Running 24/7, actively handling business operations for SourceWithAI.
+**Production** - Running 24/7, actively handling business operations for SourceWithAI.
 
 ---
 
