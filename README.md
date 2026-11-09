@@ -1,8 +1,8 @@
 # Chotu, a production AI operations agent
 
-> A multi-agent system that has run a company's sourcing operations over WhatsApp, continuously, since February 2026.
+> A multi-agent system that ran a company's sourcing operations over WhatsApp from February to May 2026.
 
-Chotu is not a chatbot. It is a scheduled, multi-agent platform with persistent memory, tool routing, cost governance and an incident history. It sources products across OTAPI, Alibaba 1688 and SAGE, generates client-ready decks, runs outbound email campaigns and coordinates the team, and it does so unattended most of the time.
+Chotu was not a chatbot. It was a scheduled, multi-agent platform with persistent memory, tool routing, cost governance and an incident history. It sourced products across OTAPI, Alibaba 1688 and SAGE, generated client-ready decks, ran outbound email campaigns and coordinated the team, and it did so unattended most of the time.
 
 Most of the engineering value in it is not the model calls. It is everything built around them to stop an autonomous agent from doing damage: fabrication guards, output contracts, immutable doctrine files, allowlists, audit trails and a documented recovery runbook.
 
@@ -27,7 +27,7 @@ Most of the engineering value in it is not the model calls. It is everything bui
 
 **Five agents** with routing by group binding, so the team channel, the executive assistant channel and the partner channel each get an agent with its own context and permissions rather than one generic assistant guessing who it is talking to.
 
-**A scheduler, not just a responder.** 88 defined jobs, 46 currently enabled, covering morning briefs, pipeline tracking, inbox scanning, campaign statistics, health checks and watchdogs. The scheduler reloads its job definitions every tick, so operational changes ship without restarting the gateway and dropping live messages.
+**A scheduler, not just a responder.** 88 defined jobs, 46 enabled, covering morning briefs, pipeline tracking, inbox scanning, campaign statistics, health checks and watchdogs. The scheduler reloads its job definitions every tick, so operational changes ship without restarting the gateway and dropping live messages.
 
 ---
 
@@ -41,9 +41,9 @@ The system runs across roughly a dozen models from three families, tiered delibe
 | **Light and fast** | High frequency operational jobs, inbox scanning, statistics, reminders | 6 |
 | **Balanced default** | Internal and engineering jobs, silent-on-empty monitors | 27 plus defaults |
 
-**Cost engineering.** Over roughly two and a half months the entire stack was migrated off direct paid API billing onto a flat-rate subscription, ending with **zero execution paths billing a metered API key**. This was not a single switch. It required moving every scheduled job, then the runtime defaults, then the fallback chain, verifying each step against the live system.
+**Cost engineering.** Over roughly two and a half months every text-model path was migrated off direct paid API billing onto a flat-rate subscription. Memory search embeddings still used a metered OpenAI key. This was not a single switch. It required moving every scheduled job, then the runtime defaults, then the fallback chain, verifying each step against the live system.
 
-**Fallback design.** The fallback model is deliberately chosen from a **different upstream family** than the primary. The most common reason a primary call fails is an upstream outage at that model's provider, and models sharing that upstream would fail at the same moment. A same-family fallback is not a fallback.
+**Fallback design.** When a primary call fails, the same model is retried through a **second provider route**, because the most common reason a call fails is an outage or a limit at one provider, not a problem with the model itself.
 
 ---
 
@@ -57,7 +57,7 @@ Three tiers, split by how long the information needs to live, because context wi
 | **Long term** | Client history, standing decisions, durable facts | Changes slowly |
 | **Rolling short term** | Per-channel conversation capture, regenerated on a schedule | Rolling window |
 
-Every interaction is written to structured run logs, so any action can be traced back to the tool call and reasoning that produced it. Logs and memory are backed up to object storage, currently several thousand objects and a few gigabytes.
+Every interaction is written to structured run logs, so any action can be traced back to the tool call and reasoning that produced it. Logs and memory are backed up to object storage, several thousand objects and a few gigabytes.
 
 A hard constraint worth knowing about: the identity file has a **byte-based size cap**, not a character cap. Emoji are multi-byte, so a character count under-reads the real size and the file silently truncates past the limit, quietly dropping rules from the end. Trimming it is done through a token-preservation harness that verifies every header, rule, path and identifier survives before the write is committed.
 
@@ -118,7 +118,7 @@ For scale: an external vendor proposed a multi-month engagement to deliver the g
 | Component | Technology |
 |---|---|
 | Runtime | Node, systemd-managed long-running process |
-| Models | Multi-provider, tiered by job class, single-subscription billing |
+| Models | Multi-provider, tiered by job class, flat-rate billing for text models |
 | Messaging | WhatsApp Business |
 | Tooling | ~4,000 lines of custom scripts for sourcing, decks, campaigns and memory |
 | Integrations | OTAPI and Alibaba 1688 for China sourcing, SAGE for US promotional products, Zoho CRM, Gamma for presentation generation, SmartLead for email campaigns, the SourceWithAI platform API |
@@ -136,6 +136,6 @@ Architect and developer. I designed and built the agent, its memory architecture
 
 ## Status
 
-**In production**, running continuously and handling live business operations.
+**Retired.** It handled live business operations from February to May 2026.
 
-> Private commercial repository containing proprietary business logic, integrations and client data. Architecture and engineering approach are documented here for portfolio purposes. A walkthrough and live demonstration are available on request during interviews.
+> Private commercial repository containing proprietary business logic, integrations and client data. Architecture and engineering approach are documented here for portfolio purposes. A walkthrough is available on request during interviews.
