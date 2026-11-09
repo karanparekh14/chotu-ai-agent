@@ -2,6 +2,10 @@
 
 > A multi-agent system that ran a company's sourcing operations over WhatsApp from February to May 2026.
 
+<p>
+<img src="https://img.shields.io/badge/WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"> <img src="https://img.shields.io/badge/OpenClaw-1F6FEB?style=flat-square" alt="OpenClaw"> <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"> <img src="https://img.shields.io/badge/Claude%20Haiku%20and%20Sonnet-D97757?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Haiku and Sonnet"> <img src="https://img.shields.io/badge/GPT--4o-412991?style=flat-square&logo=openai&logoColor=white" alt="GPT-4o"> <img src="https://img.shields.io/badge/Zoho%20CRM-E42527?style=flat-square&logo=zoho&logoColor=white" alt="Zoho CRM"> <img src="https://img.shields.io/badge/Gamma-5B4BDB?style=flat-square" alt="Gamma"> <img src="https://img.shields.io/badge/SmartLead-2E7D32?style=flat-square" alt="SmartLead"> <img src="https://img.shields.io/badge/systemd-30D475?style=flat-square" alt="systemd"> <img src="https://img.shields.io/badge/Vultr-007BFC?style=flat-square&logo=vultr&logoColor=white" alt="Vultr">
+</p>
+
 Chotu was not a chatbot. It was a scheduled, multi-agent platform with persistent memory, tool routing, cost governance and an incident history. It sourced products across OTAPI, Alibaba 1688 and SAGE, generated client-ready decks, ran outbound email campaigns and coordinated the team, and it did so unattended most of the time.
 
 Most of the engineering value in it is not the model calls. It is everything built around them to stop an autonomous agent from doing damage: fabrication guards, output contracts, immutable doctrine files, allowlists, audit trails and a documented recovery runbook.
@@ -10,36 +14,28 @@ Most of the engineering value in it is not the model calls. It is everything bui
 
 ## Architecture
 
-```
-        WhatsApp Business  (team and client groups, direct messages)
-                                |
-                    Gateway  (Node, systemd, always-on)
-                                |
-    +---------------+-----------+-----------+------------------+
-    |               |                       |                  |
- 5 agents      Cron scheduler          Tool scripts        Memory tiers
- routed by     88 jobs defined         ~4,000 lines        identity / long
- group and     46 enabled              sourcing, decks,    term / rolling
- binding       per-tick reload         campaigns, memory   short term
-                                                                |
-                                            Structured run logs, S3 backup
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/architecture-dark.svg">
+  <img alt="Chotu architecture: WhatsApp groups, the OpenClaw gateway on Vultr, four agents, an 87-job scheduler, tools, guard code and backups" src="assets/architecture-light.svg" width="100%">
+</picture>
 
-**Five agents** with routing by group binding, so the team channel, the executive assistant channel and the partner channel each get an agent with its own context and permissions rather than one generic assistant guessing who it is talking to.
+**Four configured agents** (main, sales, ea, partner) with routing by group binding, and by mention elsewhere, so the team channel, the executive assistant channel and the partner channel each get an agent with its own context and permissions rather than one generic assistant guessing who it is talking to.
 
-**A scheduler, not just a responder.** 88 defined jobs, 46 enabled, covering morning briefs, pipeline tracking, inbox scanning, campaign statistics, health checks and watchdogs. The scheduler reloads its job definitions every tick, so operational changes ship without restarting the gateway and dropping live messages.
+**A scheduler, not just a responder.** 87 defined jobs, 54 enabled in the May 2026 snapshot, covering morning briefs, pipeline tracking, inbox scanning, campaign statistics, health checks and watchdogs. The scheduler reloads its job definitions every tick, so operational changes ship without restarting the gateway and dropping live messages.
 
 ---
 
 ## Model routing and cost governance
 
-The system runs across roughly a dozen models from three families, tiered deliberately by job rather than defaulting to the strongest available.
+Models are chosen per job rather than defaulting to the strongest available. Counts are the enabled scheduled jobs in the May 2026 snapshot.
 
-| Tier | Used for | Job count |
+| Model | Used for | Enabled jobs |
 |---|---|---|
-| **Strong reasoning** | Executive synthesis and summarisation where output quality is visible to leadership | 10 |
-| **Light and fast** | High frequency operational jobs, inbox scanning, statistics, reminders | 6 |
-| **Balanced default** | Internal and engineering jobs, silent-on-empty monitors | 27 plus defaults |
+| **Claude Sonnet 4.6** | Executive synthesis and summaries where output quality is visible to leadership | 12 |
+| **Claude Haiku 4.5** | The default: high-frequency operational jobs, inbox scanning, statistics, reminders, monitors | 36 plus 6 on the default |
+| **GPT-4o** | A heartbeat every 15 minutes | heartbeat |
+
+Text models ran through a flat-rate subscription route first, with the same model reached directly as the fallback.
 
 **Cost engineering.** Over roughly two and a half months every text-model path was migrated off direct paid API billing onto a flat-rate subscription. Memory search embeddings still used a metered OpenAI key. This was not a single switch. It required moving every scheduled job, then the runtime defaults, then the fallback chain, verifying each step against the live system.
 
@@ -57,7 +53,7 @@ Three tiers, split by how long the information needs to live, because context wi
 | **Long term** | Client history, standing decisions, durable facts | Changes slowly |
 | **Rolling short term** | Per-channel conversation capture, regenerated on a schedule | Rolling window |
 
-Every interaction is written to structured run logs, so any action can be traced back to the tool call and reasoning that produced it. Logs and memory are backed up to object storage, several thousand objects and a few gigabytes.
+Every interaction is written to structured run logs, so any action can be traced back to the tool call and reasoning that produced it. Logs and memory are backed up to S3-compatible object storage: about 5,900 objects and 1.5 GB at the first full sync.
 
 A hard constraint worth knowing about: the identity file has a **byte-based size cap**, not a character cap. Emoji are multi-byte, so a character count under-reads the real size and the file silently truncates past the limit, quietly dropping rules from the end. Trimming it is done through a token-preservation harness that verifies every header, rule, path and identifier survives before the write is committed.
 
@@ -77,7 +73,7 @@ The general lesson, which generalises well beyond this system:
 
 **Verify before done.** A behavioural rule, reinforced by a per-turn reminder injected into every conversation, requiring the agent to confirm an action actually completed before reporting it as complete. This exists because it once announced a task as finished and then admitted a minute later that it had not started.
 
-**Confidentiality guards.** An outbound audit hook watches for internal supplier taxonomy and strategic context appearing in client-facing conversations. The first version ran in-process and missed most outbound traffic because one delivery path bypassed the event it listened to. It was replaced with a polling monitor that sees everything.
+**Confidentiality guards.** A pre-send guard in the deck tooling keeps internal supplier names out of client-facing output, and a post-send hook scans every outbound WhatsApp message for them and alerts the owner privately. Defence in depth, by design.
 
 **Silence as a feature.** Scheduled jobs that have nothing material to report emit an explicit no-reply token and deliver nothing. Client-facing jobs carry an output contract that bans narration, internal jargon, reasoning preamble and status noise. An operations agent that speaks constantly gets muted, and a muted agent is worthless.
 
@@ -118,12 +114,12 @@ For scale: an external vendor proposed a multi-month engagement to deliver the g
 | Component | Technology |
 |---|---|
 | Runtime | Node, systemd-managed long-running process |
-| Models | Multi-provider, tiered by job class, flat-rate billing for text models |
+| Models | Claude Haiku 4.5, Claude Sonnet 4.6, GPT-4o; tiered by job, flat-rate billing for text models |
 | Messaging | WhatsApp Business |
-| Tooling | ~4,000 lines of custom scripts for sourcing, decks, campaigns and memory |
+| Tooling | About 200 script files (JavaScript, Python, shell) for sourcing, decks, campaigns and memory, and four hooks |
 | Integrations | OTAPI and Alibaba 1688 for China sourcing, SAGE for US promotional products, Zoho CRM, Gamma for presentation generation, SmartLead for email campaigns, the SourceWithAI platform API |
-| Scheduling | 88 defined jobs, 46 enabled, per-tick reload |
-| Storage | Object storage backups, structured run logs |
+| Scheduling | 87 defined jobs, 54 enabled (May 2026), per-tick reload |
+| Storage | S3-compatible object storage on Vultr, daily git backup, structured run logs |
 | Monitoring | External uptime checks, watchdog jobs, file size and health monitors |
 
 ---

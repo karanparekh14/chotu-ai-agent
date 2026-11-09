@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Chotu architecture: WhatsApp groups, the OpenClaw gateway, four agents, a scheduler, tools, guard code and backups">
+<title>Chotu architecture: WhatsApp groups, the OpenClaw gateway, four agents, a scheduler, tools, guard code and backups</title>
+<rect width="1200" height="800" rx="16" fill="#ffffff" stroke="#d0d7de"/>
+<text x="40" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1f2328" text-anchor="start">How Chotu was built</text>
+<text x="40" y="82" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="400" fill="#57606a" text-anchor="start">An operations agent on WhatsApp, February to May 2026. Snapshot of the configuration in May 2026.</text>
+<text x="40" y="124" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8c959f" text-anchor="start">WHATSAPP</text>
+<rect x="30" y="140" width="190" height="100" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="30" y="149" width="4" height="82" rx="2" fill="#0f766e"/>
+<text x="46" y="165" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Team groups</text>
+<text x="46" y="187.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">sourcing, decks,</text>
+<text x="46" y="204.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">campaigns, CRM checks</text>
+<line x1="220" y1="190" x2="250" y2="190" stroke="#0f766e" stroke-width="2.2"/>
+<circle cx="220" cy="190" r="4" fill="#0f766e"/>
+<circle cx="250" cy="190" r="4" fill="#0f766e"/>
+<rect x="30" y="252" width="190" height="100" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="30" y="261" width="4" height="82" rx="2" fill="#7c3aed"/>
+<text x="46" y="277" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Executive assistant</text>
+<text x="46" y="299.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">one leader's</text>
+<text x="46" y="316.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">own channel</text>
+<line x1="220" y1="302" x2="250" y2="302" stroke="#7c3aed" stroke-width="2.2"/>
+<circle cx="220" cy="302" r="4" fill="#7c3aed"/>
+<circle cx="250" cy="302" r="4" fill="#7c3aed"/>
+<rect x="30" y="364" width="190" height="100" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="30" y="373" width="4" height="82" rx="2" fill="#b45309"/>
+<text x="46" y="389" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Partner channel</text>
+<text x="46" y="411.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">a partner company's</text>
+<text x="46" y="428.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">staff</text>
+<line x1="220" y1="414" x2="250" y2="414" stroke="#b45309" stroke-width="2.2"/>
+<circle cx="220" cy="414" r="4" fill="#b45309"/>
+<circle cx="250" cy="414" r="4" fill="#b45309"/>
+<rect x="30" y="476" width="190" height="100" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="30" y="485" width="4" height="82" rx="2" fill="#0969da"/>
+<text x="46" y="501" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Other groups</text>
+<text x="46" y="523.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">reached by mention:</text>
+<text x="46" y="540.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">@chotu, @sales, @ea</text>
+<line x1="220" y1="526" x2="250" y2="526" stroke="#0969da" stroke-width="2.2"/>
+<circle cx="220" cy="526" r="4" fill="#0969da"/>
+<circle cx="250" cy="526" r="4" fill="#0969da"/>
+<rect x="250" y="140" width="200" height="436" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="250" y="149" width="4" height="418" rx="2" fill="#0969da"/>
+<text x="266" y="165" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">OpenClaw gateway</text>
+<text x="266" y="187.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">Node, systemd service</text>
+<text x="266" y="204.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">on a Vultr server</text>
+<text x="266" y="222.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start"></text>
+<text x="266" y="240.25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">routes each group to</text>
+<text x="266" y="258.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">an agent by binding,</text>
+<text x="266" y="275.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">others by mention</text>
+<text x="266" y="293.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start"></text>
+<text x="266" y="311.25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">replies only when</text>
+<text x="266" y="329.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">tagged in groups;</text>
+<text x="266" y="346.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">concise by default</text>
+<text x="266" y="364.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start"></text>
+<text x="266" y="382.25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">context pruned after</text>
+<text x="266" y="400.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">an hour, compaction</text>
+<text x="266" y="417.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">in safeguard mode</text>
+<rect x="476" y="108" width="420" height="468" rx="16" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.2"/>
+<text x="496" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8c959f" text-anchor="start">AGENTS AND SCHEDULER</text>
+<rect x="492" y="146" width="188" height="74" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="492" y="155" width="4" height="56" rx="2" fill="#0f766e"/>
+<text x="508" y="171" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">main</text>
+<text x="508" y="193.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">the default agent</text>
+<rect x="690" y="146" width="188" height="74" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="690" y="155" width="4" height="56" rx="2" fill="#0f766e"/>
+<text x="706" y="171" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">sales</text>
+<text x="706" y="193.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">sales pods and CRM</text>
+<rect x="492" y="232" width="188" height="74" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="492" y="241" width="4" height="56" rx="2" fill="#0f766e"/>
+<text x="508" y="257" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">ea</text>
+<text x="508" y="279.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">executive assistant</text>
+<rect x="690" y="232" width="188" height="74" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="690" y="241" width="4" height="56" rx="2" fill="#0f766e"/>
+<text x="706" y="257" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">partner</text>
+<text x="706" y="279.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">partner channel</text>
+<defs><marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker><marker id="arrow1s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker></defs>
+<path d="M 450 230 L 488 230" fill="none" stroke="#0969da" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow1)"/>
+<rect x="492" y="330" width="386" height="110" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="492" y="339" width="4" height="92" rx="2" fill="#b45309"/>
+<text x="508" y="355" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Scheduler: 87 jobs, 54 enabled</text>
+<text x="508" y="377.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">morning briefs, CRM mirror every 15 minutes,</text>
+<text x="508" y="394.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">pod checks, campaign stats, website health,</text>
+<text x="508" y="412.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">watchdogs, a weekly restore drill</text>
+<rect x="492" y="452" width="386" height="110" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="492" y="461" width="4" height="92" rx="2" fill="#7c3aed"/>
+<text x="508" y="477" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Models, routed per job</text>
+<text x="508" y="499.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">Claude Haiku 4.5 on most jobs, Sonnet 4.6 for</text>
+<text x="508" y="516.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">leadership summaries, GPT-4o heartbeat; flat-rate</text>
+<text x="508" y="534.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">route first, the same model direct as fallback</text>
+<text x="926" y="124" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8c959f" text-anchor="start">TOOLS</text>
+<rect x="916" y="140" width="254" height="76" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="916" y="149" width="4" height="58" rx="2" fill="#0f766e"/>
+<text x="932" y="165" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Product sourcing</text>
+<text x="932" y="187.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">OTAPI, Alibaba 1688, SAGE</text>
+<rect x="916" y="228" width="254" height="76" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="916" y="237" width="4" height="58" rx="2" fill="#0f766e"/>
+<text x="932" y="253" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Client decks</text>
+<text x="932" y="275.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">Gamma presentations</text>
+<rect x="916" y="316" width="254" height="76" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="916" y="325" width="4" height="58" rx="2" fill="#0f766e"/>
+<text x="932" y="341" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Email campaigns</text>
+<text x="932" y="363.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">SmartLead</text>
+<rect x="916" y="404" width="254" height="76" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="916" y="413" width="4" height="58" rx="2" fill="#0f766e"/>
+<text x="932" y="429" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">CRM</text>
+<text x="932" y="451.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">Zoho, mirrored every 15 min</text>
+<rect x="916" y="492" width="254" height="76" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="916" y="501" width="4" height="58" rx="2" fill="#0f766e"/>
+<text x="932" y="517" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Voice notes</text>
+<text x="932" y="539.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">transcribed by a hook</text>
+<defs><marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0f766e"/></marker><marker id="arrow2s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0f766e"/></marker></defs>
+<path d="M 896 300 L 912 300" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow2)"/>
+<rect x="30" y="596" width="1140" height="184" rx="16" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.2"/>
+<text x="50" y="624" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8c959f" text-anchor="start">GUARD CODE  ·  THE PART THAT KEPT IT HONEST</text>
+<rect x="46" y="638" width="214" height="124" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="46" y="647" width="4" height="106" rx="2" fill="#cf222e"/>
+<text x="62" y="663" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Fabrication guard</text>
+<text x="62" y="685.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">the CRM mirror flags itself</text>
+<text x="62" y="702.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">DEGRADED and tells the agent</text>
+<text x="62" y="720.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">not to produce numbers</text>
+<rect x="270" y="638" width="214" height="124" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="270" y="647" width="4" height="106" rx="2" fill="#b45309"/>
+<text x="286" y="663" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Immutable core files</text>
+<text x="286" y="685.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">identity and rule files locked</text>
+<text x="286" y="702.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">with chattr +i; the agent</text>
+<text x="286" y="720.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">cannot unlock them</text>
+<rect x="494" y="638" width="214" height="124" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="494" y="647" width="4" height="106" rx="2" fill="#7c3aed"/>
+<text x="510" y="663" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Post-send audit</text>
+<text x="510" y="685.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">every outbound message is</text>
+<text x="510" y="702.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">scanned for internal supplier</text>
+<text x="510" y="720.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">names; alerts go to the owner</text>
+<rect x="718" y="638" width="214" height="124" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="718" y="647" width="4" height="106" rx="2" fill="#1a7f37"/>
+<text x="734" y="663" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Restore drill</text>
+<text x="734" y="685.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">weekly: move a file aside,</text>
+<text x="734" y="702.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">restore from git, compare</text>
+<text x="734" y="720.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">SHA-256, log the result</text>
+<rect x="942" y="638" width="214" height="124" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/>
+<rect x="942" y="647" width="4" height="106" rx="2" fill="#0969da"/>
+<text x="958" y="663" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2328" text-anchor="start">Backups</text>
+<text x="958" y="685.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">daily git backup and S3-</text>
+<text x="958" y="702.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">compatible object storage</text>
+<text x="958" y="720.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#57606a" text-anchor="start">on Vultr</text>
+</svg>
